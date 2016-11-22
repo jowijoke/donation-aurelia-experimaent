@@ -8,4 +8,9 @@ export class App {
     console.log(`Logging in ${this.email}`);
     this.loggedIn = true;
   }
+
+  logout() {
+    console.log('Logging out`');
+    this.loggedIn = false;
+  }
 }
