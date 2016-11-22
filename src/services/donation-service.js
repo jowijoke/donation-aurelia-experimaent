@@ -23,4 +23,13 @@ export default class DonationService {
     this.donations.push(donation);
     console.log(amount + ' donated to ' + candidate.firstName + ' ' + candidate.lastName + ': ' + method);
   }
+
+  addCandidate(firstName, lastName, office) {
+    const candidate = {
+      firstName: firstName,
+      lastName: lastName,
+      office: office
+    };
+    this.candidates.push(candidate);
+  }
 }

@@ -1,12 +1,21 @@
 <template>
 
-  <section class="ui two column stackable grid basic center aligned segment">
-    <aside class="column">
-      <compose view-model="./viewmodels/donate"></compose>
-    </aside>
-    <article class="column">
-      <compose view-model="./viewmodels/report"></compose>
-    </article>
-  </section>
+  <div class="ui container">
+    <section class="ui three column stackable grid basic segment">
+      <div class="ui row">
+
+        <aside class="column">
+          <compose view-model="./viewmodels/donate"></compose>
+        </aside>
+        <article class="column">
+          <compose view-model="./viewmodels/report"></compose>
+        </article>
+        <article class="column">
+        <compose view-model="./viewmodels/candidates"></compose>
+        </article>
+      </div>
+    </section>
+  </div>
+
 
 </template>
