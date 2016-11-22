@@ -7,6 +7,7 @@ export default class DonationService {
   donations = [];
   methods = [];
   candidates = [];
+  total = 0;
 
   constructor(data) {
     this.donations = data.donations;
@@ -22,6 +23,8 @@ export default class DonationService {
     };
     this.donations.push(donation);
     console.log(amount + ' donated to ' + candidate.firstName + ' ' + candidate.lastName + ': ' + method);
+    this.total = this.total + parseInt(amount, 10);
+    console.log('Total so far ' + this.total);
   }
 
   addCandidate(firstName, lastName, office) {
