@@ -1,13 +1,15 @@
 import {inject} from 'aurelia-framework';
-import DonationService from '../services/donation-service';
+import {TotalUpdate} from '../services/messages';
+import {EventAggregator} from 'aurelia-event-aggregator';
 
-@inject(DonationService)
+@inject(EventAggregator)
 export class Stats {
 
   total = 0;
 
-  constructor(ds) {
-    this.donationService = ds;
-    this.total = ds.total;
+  constructor(ea) {
+    ea.subscribe(TotalUpdate, msg => {
+      this.total = msg.total;
+    });
   }
 }
