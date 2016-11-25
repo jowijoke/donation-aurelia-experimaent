@@ -1,15 +1,15 @@
 import {inject} from 'aurelia-framework';
-import {TotalUpdate} from './messages';
-import {EventAggregator} from 'aurelia-event-aggregator';
 import Fixtures from './fixtures';
+import {TotalUpdate, LoginStatus} from './messages';
+import {EventAggregator} from 'aurelia-event-aggregator';
 
 @inject(Fixtures, EventAggregator)
 export default class DonationService {
 
-  users = [];
   donations = [];
   methods = [];
   candidates = [];
+  users = [];
   total = 0;
 
   constructor(data, ea) {
@@ -18,6 +18,29 @@ export default class DonationService {
     this.candidates = data.candidates;
     this.methods = data.methods;
     this.ea = ea;
+  }
+
+  donate(amount, method, candidate) {
+    const donation = {
+      amount: amount,
+      method: method,
+      candidate: candidate
+    };
+    this.donations.push(donation);
+    console.log(amount + ' donated to ' + candidate.firstName + ' ' + candidate.lastName + ': ' + method);
+
+    this.total = this.total + parseInt(amount, 10);
+    console.log('Total so far ' + this.total);
+    this.ea.publish(new TotalUpdate(this.total));
+  }
+
+  addCandidate(firstName, lastName, office) {
+    const candidate = {
+      firstName: firstName,
+      lastName: lastName,
+      office: office
+    };
+    this.candidates.push(candidate);
   }
 
   register(firstName, lastName, email, password) {
@@ -46,29 +69,14 @@ export default class DonationService {
     } else {
       status.message = 'Unknown user';
     }
-
-    return status;
+    this.ea.publish(new LoginStatus(status));
   }
 
-  donate(amount, method, candidate) {
-    const donation = {
-      amount: amount,
-      method: method,
-      candidate: candidate
+  logout() {
+    const status = {
+      success: false,
+      message: ''
     };
-    this.donations.push(donation);
-    console.log(amount + ' donated to ' + candidate.firstName + ' ' + candidate.lastName + ': ' + method);
-    this.total = this.total + parseInt(amount, 10);
-    console.log('Total so far ' + this.total);
-    this.ea.publish(new TotalUpdate(this.total));
-  }
-
-  addCandidate(firstName, lastName, office) {
-    const candidate = {
-      firstName: firstName,
-      lastName: lastName,
-      office: office
-    };
-    this.candidates.push(candidate);
+    this.ea.publish(new LoginStatus(new LoginStatus(status)));
   }
 }
