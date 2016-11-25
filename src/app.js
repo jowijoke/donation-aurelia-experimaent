@@ -1,35 +1,23 @@
 import {inject} from 'aurelia-framework';
+import {EventAggregator} from 'aurelia-event-aggregator';
 import DonationService from './services/donation-service';
+import {LoginStatus} from './services/messages';
 
-@inject(DonationService)
+@inject(EventAggregator, DonationService)
 export class App {
-
-  firstName = 'Marge';
-  lastName = 'Simpson';
-  email = 'marge@simpson.com';
-  password = 'secret';
 
   loggedIn = false;
   showSignup = false;
 
-  constructor(ds) {
+  constructor(ea, ds) {
     this.donationService = ds;
+    ea.subscribe(LoginStatus, msg => {
+      this.loggedIn = msg.status;
+    });
   }
 
   signup() {
     this.showSignup = true;
-  }
-
-  register(e) {
-    this.showSignup = false;
-    this.donationService.register(this.firstName, this.lastName, this.email, this.password);
-  }
-
-  login(e) {
-    console.log(`Trying to log in ${this.email}`);
-    const status = this.donationService.login(this.email, this.password);
-    this.prompt = status.message;
-    this.loggedIn = status.success;
   }
 
   logout() {

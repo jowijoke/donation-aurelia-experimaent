@@ -18,27 +18,27 @@
       <div show.bind="!loggedIn" class="ui row">
         <div show.bind="!showSignup" class="ui row">
           <section class="ui five wide column">
-            <compose view="./viewmodels/login.html"></compose>
+            <compose view-model="./viewmodels/login/login"></compose>
           </section>
         </div>
         <div show.bind="showSignup" class="ui row">
           <section class="ui five wide column">
-            <compose view="./viewmodels/signup.html"></compose>
+            <compose view-model="./viewmodels/signup/signup"></compose>
           </section>
         </div>
       </div>
       <div show.bind="loggedIn" class="ui row">
         <aside class="column">
-          <compose view-model="./viewmodels/donate"></compose>
+          <compose view-model="./viewmodels/donate/donate"></compose>
         </aside>
         <article class="column">
-          <compose view-model="./viewmodels/report"></compose>
+          <compose view-model="./viewmodels/report/report"></compose>
         </article>
         <article class="column">
-          <compose view-model="./viewmodels/candidates"></compose>
+          <compose view-model="./viewmodels/candidates/candidates"></compose>
         </article>
         <article class="column">
-          <compose view-model="./viewmodels/stats"></compose>
+          <compose view-model="./viewmodels/stats/stats"></compose>
         </article>
       </div>
     </section>

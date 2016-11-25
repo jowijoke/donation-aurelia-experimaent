@@ -1,5 +1,5 @@
 import {inject} from 'aurelia-framework';
-import {TotalUpdate} from '../services/messages';
+import {TotalUpdate} from '../../services/messages';
 import {EventAggregator} from 'aurelia-event-aggregator';
 
 @inject(EventAggregator)

@@ -1,5 +1,5 @@
 import {inject} from 'aurelia-framework';
-import DonationService from '../services/donation-service';
+import DonationService from '../../services/donation-service';
 
 @inject(DonationService)
 export class Donate {
