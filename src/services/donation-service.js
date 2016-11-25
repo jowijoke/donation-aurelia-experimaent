@@ -6,16 +6,38 @@ import Fixtures from './fixtures';
 @inject(Fixtures, EventAggregator)
 export default class DonationService {
 
+  users = [];
   donations = [];
   methods = [];
   candidates = [];
   total = 0;
 
   constructor(data, ea) {
+    this.users = data.users;
     this.donations = data.donations;
     this.candidates = data.candidates;
     this.methods = data.methods;
     this.ea = ea;
+  }
+
+  login(email, password) {
+    const status = {
+      success: false,
+      message: ''
+    };
+
+    if (this.users[email]) {
+      if (this.users[email].password === password) {
+        status.success = true;
+        status.message = 'logged in';
+      } else {
+        status.message = 'Incorrect password';
+      }
+    } else {
+      status.message = 'Unknown user';
+    }
+
+    return status;
   }
 
   donate(amount, method, candidate) {
