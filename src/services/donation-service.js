@@ -20,6 +20,16 @@ export default class DonationService {
     this.ea = ea;
   }
 
+  register(firstName, lastName, email, password) {
+    const newUser = {
+      firstName: firstName,
+      lastName: lastName,
+      email: email,
+      password: password
+    };
+    this.users[email] = newUser;
+  }
+
   login(email, password) {
     const status = {
       success: false,

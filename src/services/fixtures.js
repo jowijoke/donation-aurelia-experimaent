@@ -2,20 +2,20 @@ export default class Fixtures {
 
   methods = ['Cash', 'PayPal'];
 
-  users = {
-    'homer@simpson.com': {
+  users = [
+    {
       firstName: 'Homer',
       lastName: 'Simpson',
       email: 'homer@simpson.com',
       password: 'secret'
     },
-    'marge@simpson.com': {
+    {
       firstName: 'Marge',
       lastName: 'Simpson',
       email: 'marge@simpson.com',
       password: 'secret'
     }
-  }
+  ];
 
   candidates = [
     {

@@ -4,13 +4,25 @@ import DonationService from './services/donation-service';
 @inject(DonationService)
 export class App {
 
+  firstName = 'Marge';
+  lastName = 'Simpson';
   email = 'marge@simpson.com';
   password = 'secret';
 
   loggedIn = false;
+  showSignup = false;
 
   constructor(ds) {
     this.donationService = ds;
+  }
+
+  signup() {
+    this.showSignup = true;
+  }
+
+  register(e) {
+    this.showSignup = false;
+    this.donationService.register(this.firstName, this.lastName, this.email, this.password);
   }
 
   login(e) {
