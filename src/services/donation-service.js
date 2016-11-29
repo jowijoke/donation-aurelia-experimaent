@@ -77,6 +77,6 @@ export default class DonationService {
       success: false,
       message: ''
     };
-    this.ea.publish(new LoginStatus(new LoginStatus(status)));
+    this.ea.publish(new LoginStatus(status));
   }
 }

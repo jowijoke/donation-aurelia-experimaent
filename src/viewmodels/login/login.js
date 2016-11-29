@@ -1,13 +1,16 @@
 import {inject} from 'aurelia-framework';
+import {EventAggregator} from 'aurelia-event-aggregator';
 import DonationService from '../../services/donation-service';
+import {LoginStatus} from '../../services/messages';
 
-@inject(DonationService)
+@inject(EventAggregator, DonationService)
 export class Login {
 
   email = 'marge@simpson.com';
   password = 'secret';
 
-  constructor(ds) {
+  constructor(ea, ds) {
+    this.ea = ea;
     this.donationService = ds;
     this.prompt = '';
   }
@@ -15,5 +18,6 @@ export class Login {
   login(e) {
     console.log(`Trying to log in ${this.email}`);
     this.donationService.login(this.email, this.password);
+    //this.ea.publish(new LoginStatus(status));
   }
 }
